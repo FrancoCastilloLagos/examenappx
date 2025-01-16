@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Crear Aviso</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="avisoForm" (ngSubmit)="guardarAviso()">
+    <ion-item>
+      <ion-label position="floating">Título</ion-label>
+      <ion-input formControlName="titulo" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea formControlName="descripcion" required></ion-textarea>
+    </ion-item>
+    <ion-button expand="full" type="submit" [disabled]="avisoForm.invalid">
+      Guardar Aviso
+    </ion-button>
+  </form>
+  <ion-button expand="full" color="secondary" (click)="tomarFoto()">Tomar Foto</ion-button>
+ <ion-card style="margin-bottom: 20px;">
+  <ion-card-header>
+    <ion-card-title>Requisitos para ingresar un anuncio</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ul>
+      <li><strong>Título:</strong> Mínimo 5 caracteres.</li>
+      <li><strong>Descripción:</strong> Mínimo 20 caracteres.</li>
+      <li><strong>Foto:</strong> Opcional pero recomendable para agregar más contexto.</li>
+    </ul>
+  </ion-card-content>
+</ion-card>
+  <div *ngIf="mensajeFoto" style="margin-top: 10px; text-align: center; color: gray;">
+    <p>{{ mensajeFoto }}</p>
+  </div>
+  <div *ngIf="fotoUrl" style="text-align: center; margin-top: 20px;">
+    <img [src]="fotoUrl" alt="Vista previa" style="max-width: 100%; max-height: 200px;">
+  </div>
+</ion-content>
+

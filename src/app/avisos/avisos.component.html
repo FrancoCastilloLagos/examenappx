@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Publicaciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let aviso of avisos; let i = index">
+      <!-- Imagen del aviso -->
+      <ion-thumbnail slot="start">
+        <img *ngIf="aviso.fotoUrl" [src]="aviso.fotoUrl" alt="Foto del aviso" />
+        <img *ngIf="!aviso.fotoUrl" src="assets/placeholder-image.png" alt="Sin imagen" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ aviso.titulo }}</h2>
+        <p>{{ aviso.descripcion }}</p>
+        <p>{{ aviso.fecha | fecha }}</p>
+      </ion-label>
+      <img 
+        src="assets/icon/trash-icon.png" 
+        alt="Eliminar" 
+        (click)="confirmarEliminar(i)" 
+        style="width: 30px; height: 30px; cursor: pointer;"/>
+    </ion-item>
+  </ion-list>
+  <div *ngIf="avisos.length === 0" class="empty-state">
+    <p>No hay publicaciones creadas. Usa el botón "+" para agregar una.</p>
+  </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/crear-aviso" color="primary">
+      <span style="font-size: 24px; color: white;">+</span>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
